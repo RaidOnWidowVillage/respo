@@ -1,0 +1,21 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: cloud-consumer
+eureka:
+  client:
+    service-url:
+      defaultZone: http://qiancheng:123456@127.0.0.1:8080/eureka/      #服务注册中心地址，含有BASIC认证的用户名和密码
+  instance:
+    prefer-ip-address: true #将IP注册到服务注册中心
+# 配置 Ribbon 负载均衡调度规则
+springms-provider-user:
+  ribbon:
+    # NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule              # 轮询
+    # NFLoadBalancerRuleClassName: com.netflix.loadbalancer.AvailabilityFilteringRule   # 根据服务是否死掉或者服务处于高并发来分配权重
+    # NFLoadBalancerRuleClassName: com.netflix.loadbalancer.WeightedResponseTimeRule    # 根据响应时间分配权重
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule                    # 随机分配
+feign:
+  hystrix:
+    enabled: true
