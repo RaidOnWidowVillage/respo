@@ -1,0 +1,16 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: cloud-gateway
+eureka:
+  client:
+    service-url:
+      defaultZone: http://qiancheng:123456@127.0.0.1:8080/eureka/ # 服务者测中心地址，含有BASIC认证的用户名和密码
+  instance:
+    prefer-ip-address: true # 将IP注册到服务注册中心
+zuul:
+  routes:
+    feign:
+      path: /feign/**
+      serviceId: cloud-consumer
