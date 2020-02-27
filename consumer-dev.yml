@@ -8,19 +8,26 @@ eureka:
     service-url:
       defaultZone: http://qiancheng:123456@127.0.0.1:8080/eureka/      #服务注册中心地址，含有BASIC认证的用户名和密码
   instance:
-    prefer-ip-address: true #将IP注册到服务注册中心
-# 配置 Ribbon 负载均衡调度规则
-# springms-provider-user:
-#  ribbon:
+    prefer-ip-address: true # 将IP注册到服务注册中心
+    # 配置 Ribbon 负载均衡调度规则
+cloud-provider:
+  ribbon:
+    OkToRetryOnAllOperations: false #对所有操作请求都进行重试,默认false
+    ReadTimeout: 10000   #负载均衡超时时间，默认值5000
+    ConnectTimeout: 2000 #ribbon请求连接的超时时间，默认值2000
+    MaxAutoRetries: 0     #对当前实例的重试次数，默认0
+    MaxAutoRetriesNextServer: 1 #对切换实例的重试次数，默认1
     # NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule              # 轮询
     # NFLoadBalancerRuleClassName: com.netflix.loadbalancer.AvailabilityFilteringRule   # 根据服务是否死掉或者服务处于高并发来分配权重
     # NFLoadBalancerRuleClassName: com.netflix.loadbalancer.WeightedResponseTimeRule    # 根据响应时间分配权重
-    # NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule                    # 随机分配
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule                   # 随机分配
 feign:
-  client:
-    config:
-      default:                  # default是全局配置feign超时，将default改成具体服务名即可具体设置哪个服务的feign超时
-        connectTimeout: 10000
-        readTimeout: 10000
+#  client:
+#    config:
+#      default:                  # default是全局配置feign超时，将default改成具体服务名即可具体设置哪个服务的feign超时
+#        connectTimeout: 10000
+#        readTimeout: 10000
   hystrix:
-    enabled: true
+    enabled: false
+
+
