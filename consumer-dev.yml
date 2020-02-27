@@ -10,12 +10,12 @@ eureka:
   instance:
     prefer-ip-address: true #将IP注册到服务注册中心
 # 配置 Ribbon 负载均衡调度规则
-springms-provider-user:
-  ribbon:
+# springms-provider-user:
+#  ribbon:
     # NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule              # 轮询
     # NFLoadBalancerRuleClassName: com.netflix.loadbalancer.AvailabilityFilteringRule   # 根据服务是否死掉或者服务处于高并发来分配权重
     # NFLoadBalancerRuleClassName: com.netflix.loadbalancer.WeightedResponseTimeRule    # 根据响应时间分配权重
-    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule                    # 随机分配
+    # NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule                    # 随机分配
 feign:
   client:
     config:
