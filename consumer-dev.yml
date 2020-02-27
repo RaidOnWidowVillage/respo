@@ -20,7 +20,7 @@ feign:
   client:
     config:
       default:                  # default是全局配置feign超时，将default改成具体服务名即可具体设置哪个服务的feign超时
-        connectTimeout: 60000
-        readTimeout: 60000
+        connectTimeout: 10000
+        readTimeout: 10000
   hystrix:
     enabled: true
